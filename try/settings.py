@@ -48,28 +48,29 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR,'static','logs', 'debub.log'),
+            'formatter': 'formatdebug'
         },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
     },
     'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {message}',
-            'style': '{',
+        'formatdebug': {
+            'format': '{levelname}-{asctime}-{message}',
+            'style': '{'
             
         },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
+        # 'simple': {
+        #     'format': '{levelname} {message}',
+        #     'style': '{',
+        # },
        
     }
 }

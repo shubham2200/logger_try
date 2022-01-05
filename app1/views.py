@@ -34,7 +34,7 @@ def login_page(request):
             user = authenticate(username=name,password=password)
             if user is not None:
                 login(request,user)
-                logger.info(msg='logged in now')
+                logger.info(msg=f'logged in now {user}')
                 return redirect("details")
             else:
                 messages.info(request , "username or password is not match")
@@ -47,8 +47,9 @@ def login_page(request):
 
 def logout_user(request):
     if request.user.is_authenticated:
+        user = request.user
         logout(request)
-        logger.info(msg='logged out now')
+        logger.info(msg=f'logged out  now {user}')
     return redirect("login_page")
 
 @login_required(login_url="login_page")
